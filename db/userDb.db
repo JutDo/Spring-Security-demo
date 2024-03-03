@@ -1,0 +1,24 @@
+
+# 创建数据库
+CREATE DATABASE `security-demo`;
+USE `security-demo`;
+
+# 创建用户表
+CREATE TABLE `user`
+(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(50) DEFAULT NULL,
+    `password` VARCHAR(50) DEFAULT NULL,
+    `enabled`  BOOLEAN NOT NULL
+);
+
+# 创建唯一索引
+CREATE   UNIQUE INDEX `user_username_uindex` ON `user`(`username`);
+-- 插入用户数据
+INSERT INTO `user` (`username`,`password`,`enabled`) values
+('admin','202CB962AC59075B964B07152D234B70',TRUE ),
+('user','E10ADC3949BA59ABBE56E057F20F883E',TRUE),
+('test','25F9E794323B453885F5181F1B624D0B',TRUE);
+
+# 修改password默认长度
+ALTER TABLE user MODIFY password VARCHAR(300)
